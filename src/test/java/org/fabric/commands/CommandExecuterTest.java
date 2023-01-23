@@ -1,7 +1,7 @@
 package org.fabric.commands;
 
 import org.fabric.models.Fund;
-import org.fabric.models.PortFolio;
+import org.fabric.models.Portfolio;
 import org.fabric.printer.ConsolePrinter;
 import org.fabric.printer.Printer;
 import org.fabric.services.FundManager;
@@ -22,7 +22,7 @@ class CommandExecutorTest {
         FundManager fundManager = new FundManager(
                 Collections.singletonList(fund)
         );
-        PortFolio portFolio = new PortFolio(new ArrayList<>());
+        Portfolio portFolio = new Portfolio(new ArrayList<>());
         Printer printer = new ConsolePrinter();
 
         CommandExecutor commandExecutor = new CommandExecutor(fundManager, portFolio, printer);
@@ -36,7 +36,7 @@ class CommandExecutorTest {
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         FundManager fundManager = new FundManager(new ArrayList<>());
-        PortFolio portFolio = new PortFolio(new ArrayList<>());
+        Portfolio portFolio = new Portfolio(new ArrayList<>());
         Printer printer = new ConsolePrinter();
         CommandExecutor commandExecutor = new CommandExecutor(fundManager, portFolio, printer);
         commandExecutor.execute("UNKNOWN");

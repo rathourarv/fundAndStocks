@@ -1,19 +1,19 @@
 package org.fabric.commands;
 
 import org.fabric.models.Fund;
-import org.fabric.models.PortFolio;
+import org.fabric.models.Portfolio;
 import org.fabric.printer.Printer;
 import org.fabric.services.FundManager;
 import org.fabric.services.OverlapCalculator;
 
 import java.util.List;
 
-public class CalculateOverlap implements Command {
-    private final PortFolio portfolio;
+public class CalculateOverlapCommand implements Command {
+    private final Portfolio portfolio;
     private final FundManager fundManager;
     private final Printer printer;
 
-    public CalculateOverlap(FundManager fundManager, PortFolio portFolio, Printer printer) {
+    public CalculateOverlapCommand(FundManager fundManager, Portfolio portFolio, Printer printer) {
         this.fundManager = fundManager;
         this.portfolio = portFolio;
         this.printer = printer;

@@ -1,14 +1,14 @@
 package org.fabric.commands;
 
-import org.fabric.models.PortFolio;
+import org.fabric.models.Portfolio;
 
 import java.util.List;
 
-public class CurrentPortFolio implements Command {
+public class CurrentPortfolioCommand implements Command {
 
-    private final PortFolio portfolio;
+    private final Portfolio portfolio;
 
-    public CurrentPortFolio(PortFolio portFolio) {
+    public CurrentPortfolioCommand(Portfolio portFolio) {
         this.portfolio = portFolio;
     }
 

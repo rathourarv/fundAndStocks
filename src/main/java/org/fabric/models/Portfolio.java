@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PortFolio {
+public class Portfolio {
     private List<String> funds;
 
-    public PortFolio(List<String> funds) {
+    public Portfolio(List<String> funds) {
         this.funds = funds;
     }
 

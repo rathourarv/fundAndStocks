@@ -1,6 +1,6 @@
 package org.fabric.commands;
 
-import org.fabric.models.PortFolio;
+import org.fabric.models.Portfolio;
 import org.fabric.printer.Printer;
 import org.fabric.services.FundManager;
 
@@ -13,13 +13,13 @@ public class CommandExecutor {
     private final Map<String, Command> commands;
     private final Printer printer;
 
-    public CommandExecutor(FundManager fundManager, PortFolio portfolio, Printer printer) {
+    public CommandExecutor(FundManager fundManager, Portfolio portfolio, Printer printer) {
         this.printer = printer;
         this.commands = new HashMap<String, Command>() {
             {
-                put("CURRENT_PORTFOLIO", new CurrentPortFolio(portfolio));
-                put("ADD_STOCK", new AddStock(fundManager, printer));
-                put("CALCULATE_OVERLAP", new CalculateOverlap(fundManager, portfolio, printer));
+                put("CURRENT_PORTFOLIO", new CurrentPortfolioCommand(portfolio));
+                put("ADD_STOCK", new AddStockCommand(fundManager, printer));
+                put("CALCULATE_OVERLAP", new CalculateOverlapCommand(fundManager, portfolio, printer));
             }
         };
     }

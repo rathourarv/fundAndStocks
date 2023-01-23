@@ -6,11 +6,11 @@ import org.fabric.services.FundManager;
 
 import java.util.List;
 
-public class AddStock implements Command {
+public class AddStockCommand implements Command {
     private final FundManager fundManager;
     private final Printer printer;
 
-    public AddStock(FundManager fundManager, Printer printer) {
+    public AddStockCommand(FundManager fundManager, Printer printer) {
         this.fundManager = fundManager;
         this.printer = printer;
     }
@@ -22,6 +22,6 @@ public class AddStock implements Command {
             this.printer.print("FUND_NOT_FOUND");
             return;
         }
-        fund.addStock(String.join(" "));
+        fund.addStock(String.join(" ", parameters.subList(1, parameters.size())));
     }
 }
