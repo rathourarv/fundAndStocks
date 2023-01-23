@@ -1,7 +1,12 @@
 package org.fabric.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class PortFolio {
     private List<String> funds;
 
@@ -9,11 +14,4 @@ public class PortFolio {
         this.funds = funds;
     }
 
-    public List<String> getFunds() {
-        return funds;
-    }
-
-    public void setFunds(List<String> funds) {
-        this.funds = funds;
-    }
 }
