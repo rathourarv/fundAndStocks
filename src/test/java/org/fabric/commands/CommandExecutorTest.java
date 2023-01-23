@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
-class CommandOrchestratorTest {
+class CommandExecutorTest {
     @Test
     void executeShouldReturnAddStockCommandInstance() {
         Fund fund = new Fund("FUND_1", new HashSet<>(Arrays.asList("HDFC BANK", "SBI", "RBL BANK")));
@@ -25,8 +25,8 @@ class CommandOrchestratorTest {
         Portfolio portFolio = new Portfolio(new ArrayList<>());
         Printer printer = new ConsolePrinter();
 
-        CommandOrchestrator commandOrchestrator = new CommandOrchestrator(fundManager, portFolio, printer);
-        commandOrchestrator.execute("ADD_STOCK FUND_1 PNB");
+        CommandExecutor commandExecutor = new CommandExecutor(fundManager, portFolio, printer);
+        commandExecutor.execute("ADD_STOCK FUND_1 PNB");
         Assertions.assertEquals(4, fund.getNumberOfStocks());
     }
 
@@ -38,8 +38,8 @@ class CommandOrchestratorTest {
         FundManager fundManager = new FundManager(new ArrayList<>());
         Portfolio portFolio = new Portfolio(new ArrayList<>());
         Printer printer = new ConsolePrinter();
-        CommandOrchestrator commandOrchestrator = new CommandOrchestrator(fundManager, portFolio, printer);
-        commandOrchestrator.execute("UNKNOWN");
+        CommandExecutor commandExecutor = new CommandExecutor(fundManager, portFolio, printer);
+        commandExecutor.execute("UNKNOWN");
         Assertions.assertEquals("COMMAND_NOT_FOUND", outputStreamCaptor.toString().trim());
         System.setOut(standardOut);
     }

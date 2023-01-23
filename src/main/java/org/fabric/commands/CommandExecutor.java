@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommandOrchestrator {
+public class CommandExecutor {
     private final Map<Commands, Command> commands;
     private final Printer printer;
-    public CommandOrchestrator(FundManager fundManager, Portfolio portfolio, Printer printer) {
+    public CommandExecutor(FundManager fundManager, Portfolio portfolio, Printer printer) {
         this.printer = printer;
         this.commands = new HashMap<Commands, Command>() {
             {
