@@ -1,15 +1,14 @@
 package org.fabric.commands;
 
 import org.fabric.models.Portfolio;
+import org.fabric.printer.Printer;
+import org.fabric.services.FundManager;
 
 import java.util.List;
 
-public class CurrentPortfolioCommand implements Command {
-
-    private final Portfolio portfolio;
-
-    public CurrentPortfolioCommand(Portfolio portFolio) {
-        this.portfolio = portFolio;
+public class CurrentPortfolioCommand extends Command {
+    public CurrentPortfolioCommand(FundManager fundManager, Portfolio portfolio, Printer printer) {
+        super(fundManager, portfolio, printer);
     }
 
     @Override

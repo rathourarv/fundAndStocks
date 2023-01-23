@@ -8,15 +8,9 @@ import org.fabric.services.OverlapCalculator;
 
 import java.util.List;
 
-public class CalculateOverlapCommand implements Command {
-    private final Portfolio portfolio;
-    private final FundManager fundManager;
-    private final Printer printer;
-
-    public CalculateOverlapCommand(FundManager fundManager, Portfolio portFolio, Printer printer) {
-        this.fundManager = fundManager;
-        this.portfolio = portFolio;
-        this.printer = printer;
+public class CalculateOverlapCommand extends Command {
+    public CalculateOverlapCommand(FundManager fundManager, Portfolio portfolio, Printer printer) {
+        super(fundManager, portfolio, printer);
     }
 
     @Override

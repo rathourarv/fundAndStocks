@@ -1,7 +1,7 @@
 package org.fabric;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.fabric.commands.CommandExecutor;
+import org.fabric.commands.CommandOrchestrator;
 import org.fabric.models.Portfolio;
 import org.fabric.printer.ConsolePrinter;
 import org.fabric.printer.Printer;
@@ -23,8 +23,8 @@ public class Main {
             FundManager fundManager = getFundManager("stock_data.json");
             Printer printer = new ConsolePrinter();
             Portfolio portfolio = new Portfolio(new ArrayList<>());
-            CommandExecutor commandExecutor = new CommandExecutor(fundManager, portfolio, printer);
-            lines.forEach(commandExecutor::execute);
+            CommandOrchestrator commandOrchestrator = new CommandOrchestrator(fundManager, portfolio, printer);
+            lines.forEach(commandOrchestrator::execute);
         } catch (IOException ex) {
             throw new FileNotFoundException("FILE_NOT_FOUND");
         }

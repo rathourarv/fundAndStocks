@@ -9,22 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommandExecutor {
-    enum Commands {
-        ADD_STOCK,
-        CURRENT_PORTFOLIO,
-        CALCULATE_OVERLAP
-    }
-
+public class CommandOrchestrator {
     private final Map<Commands, Command> commands;
     private final Printer printer;
-
-    public CommandExecutor(FundManager fundManager, Portfolio portfolio, Printer printer) {
+    public CommandOrchestrator(FundManager fundManager, Portfolio portfolio, Printer printer) {
         this.printer = printer;
         this.commands = new HashMap<Commands, Command>() {
             {
-                put(Commands.CURRENT_PORTFOLIO, new CurrentPortfolioCommand(portfolio));
-                put(Commands.ADD_STOCK, new AddStockCommand(fundManager, printer));
+                put(Commands.CURRENT_PORTFOLIO, new CurrentPortfolioCommand(fundManager, portfolio, printer));
+                put(Commands.ADD_STOCK, new AddStockCommand(fundManager, portfolio, printer));
                 put(Commands.CALCULATE_OVERLAP, new CalculateOverlapCommand(fundManager, portfolio, printer));
             }
         };
@@ -40,5 +33,11 @@ public class CommandExecutor {
         } catch (IllegalArgumentException ex) {
             this.printer.print("COMMAND_NOT_FOUND");
         }
+    }
+
+    enum Commands {
+        ADD_STOCK,
+        CURRENT_PORTFOLIO,
+        CALCULATE_OVERLAP
     }
 }

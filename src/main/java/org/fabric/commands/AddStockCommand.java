@@ -1,18 +1,15 @@
 package org.fabric.commands;
 
 import org.fabric.models.Fund;
+import org.fabric.models.Portfolio;
 import org.fabric.printer.Printer;
 import org.fabric.services.FundManager;
 
 import java.util.List;
 
-public class AddStockCommand implements Command {
-    private final FundManager fundManager;
-    private final Printer printer;
-
-    public AddStockCommand(FundManager fundManager, Printer printer) {
-        this.fundManager = fundManager;
-        this.printer = printer;
+public class AddStockCommand extends Command {
+    public AddStockCommand(FundManager fundManager, Portfolio portfolio, Printer printer) {
+        super(fundManager, portfolio, printer);
     }
 
     @Override
