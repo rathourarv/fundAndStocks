@@ -44,6 +44,17 @@ class CalculateOverlapCommandTest {
     }
 
     @Test
+    void executeShouldNotLogIfOverlapIsZero() {
+        Fund fund1 = new Fund("FUND_1", new HashSet<>(Collections.singletonList("HDFC BANK")));
+        Fund fund2 = new Fund("FUND_2", new HashSet<>(Collections.singletonList("CHASE")));
+        FundManager fundManager = new FundManager(Arrays.asList(fund1, fund2));
+        Portfolio portFolio = new Portfolio((Collections.singletonList("FUND_1")));
+        Command command = new CalculateOverlapCommand(fundManager, portFolio, new ConsolePrinter());
+        command.execute(Collections.singletonList("FUND_2"));
+        assertEquals("", outputStreamCaptor.toString().trim());
+    }
+
+    @Test
     void execute_should_log_fund_not_found_when_fund_name_is_not_present() {
         Fund fund = new Fund("FUND_1", new HashSet<>(Arrays.asList("HDFC BANK", "SBI", "RBL BANK")));
         FundManager fundManager = new FundManager(Collections.singletonList(fund));

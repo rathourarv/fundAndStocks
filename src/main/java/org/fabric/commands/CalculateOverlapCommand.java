@@ -29,8 +29,10 @@ public class CalculateOverlapCommand implements Command {
         this.portfolio.getFunds().forEach(fundName -> {
             Fund fund = fundManager.getFund(fundName);
             float overlap = OverlapCalculator.calculate(fund, fundToCompareWith);
-            this.printer.print(
-                    String.format("%s %s %.2f%%", fundToCompareWith.name, fund.name, overlap));
+            if (overlap > 0.0) {
+                this.printer.print(
+                        String.format("%s %s %.2f%%", fundToCompareWith.name, fund.name, overlap));
+            }
         });
     }
 }

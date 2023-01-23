@@ -10,29 +10,35 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandExecutor {
-    private final Map<String, Command> commands;
+    enum Commands {
+        ADD_STOCK,
+        CURRENT_PORTFOLIO,
+        CALCULATE_OVERLAP
+    }
+
+    private final Map<Commands, Command> commands;
     private final Printer printer;
 
     public CommandExecutor(FundManager fundManager, Portfolio portfolio, Printer printer) {
         this.printer = printer;
-        this.commands = new HashMap<String, Command>() {
+        this.commands = new HashMap<Commands, Command>() {
             {
-                put("CURRENT_PORTFOLIO", new CurrentPortfolioCommand(portfolio));
-                put("ADD_STOCK", new AddStockCommand(fundManager, printer));
-                put("CALCULATE_OVERLAP", new CalculateOverlapCommand(fundManager, portfolio, printer));
+                put(Commands.CURRENT_PORTFOLIO, new CurrentPortfolioCommand(portfolio));
+                put(Commands.ADD_STOCK, new AddStockCommand(fundManager, printer));
+                put(Commands.CALCULATE_OVERLAP, new CalculateOverlapCommand(fundManager, portfolio, printer));
             }
         };
     }
 
     public void execute(String line) {
         List<String> commandWithParameters = Arrays.asList(line.split(" "));
-        String name = commandWithParameters.get(0);
         List<String> parameters = commandWithParameters.subList(1, commandWithParameters.size());
-        Command command = this.commands.get(name);
-        if (command == null) {
+
+        try {
+            Command command = this.commands.get(Commands.valueOf(commandWithParameters.get(0)));
+            command.execute(parameters);
+        } catch (IllegalArgumentException ex) {
             this.printer.print("COMMAND_NOT_FOUND");
-            return;
         }
-        command.execute(parameters);
     }
 }
